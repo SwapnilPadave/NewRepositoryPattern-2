@@ -8,7 +8,7 @@ namespace NewRepo2.DTO.CourseDTO
 {
     public class CourseUpdateDTO
     {
-        public int CourseId { get; set; }
+       
         public string CourseName { get; set; }
     }
 }

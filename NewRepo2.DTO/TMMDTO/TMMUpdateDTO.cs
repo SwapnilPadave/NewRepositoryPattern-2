@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NewRepo2.DTO.TMMDTO
 {
-    public class TMMAddUpdateDTO
+    public class TMMUpdateDTO
     {
         public int Id { get; set; }
         public int TeacherId { get; set; }

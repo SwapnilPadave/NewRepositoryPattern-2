@@ -9,5 +9,6 @@ namespace NewRepo2.DTO.SubjectDTO
     public class SubjectAddDTO
     {
         public string SubjectName { get; set; }
+        public int CourseId { get; set; }
     }
 }

@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NewRepo2.DTO\NewRepo2.DTO.csproj" />
     <ProjectReference Include="..\NewRepo2.Service\NewRepo2.Service.csproj" />
   </ItemGroup>
 
