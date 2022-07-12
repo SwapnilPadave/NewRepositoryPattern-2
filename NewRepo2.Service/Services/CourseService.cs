@@ -54,17 +54,16 @@ namespace NewRepo2.Service.Services
         {
             try
             {
-                var course = new Course();
-                
-                course.CourseName = updateDTO.CourseName;
-                Course _course = await GetCourseById(course.CourseId);
+                //var course = new Course();
+               
+                var _course = await GetCourseById(updateDTO.CourseId);
                 if (_course != null)
                 {
-                   
-                    _course.CourseName = course.CourseName;
+                    _course.CourseId = updateDTO.CourseId;
+                    _course.CourseName = updateDTO.CourseName.Trim();                                  
                     await _courseRepository.Update(_course);
                 }
-                return course;
+                return _course;
             }
             catch(Exception ex)
             {

@@ -56,20 +56,17 @@ namespace NewRepo2.Service.Services
         {
             try
             {
-                var student = new Student();
-                student.StudentId = updateDTO.StudentId;
-                student.FullName = updateDTO.FullName;
-                student.Email = updateDTO.Email;
-                Student _student = await _studentRepository.GetById(student.StudentId);
+                
+                var _student = await _studentRepository.GetById(updateDTO.StudentId);
                 if (_student != null)
                 {
-                    _student.StudentId = student.StudentId;
-                    _student.FullName = student.FullName;
-                    _student.Email = student.Email;
-                    _student.CourseId = student.CourseId;
+                    _student.StudentId = updateDTO.StudentId;
+                    _student.FullName = updateDTO.FullName;
+                    _student.Email = updateDTO.Email;
+                    _student.CourseId = updateDTO.CourseId;
                     await _studentRepository.Update(_student);
                 }
-                return student;
+                return _student;
             }
             catch(Exception ex)
             {

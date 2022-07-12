@@ -55,19 +55,16 @@ namespace NewRepo2.Service.Services
         {
             try
             {
-                var TMM = new TeacherMappingModel();
-                TMM.Id = UpdateDTO.Id;
-                TMM.TeacherId = UpdateDTO.TeacherId;
-                TMM.SubjectId = UpdateDTO.SubjectId;
-                TeacherMappingModel _TMM = await GetTMMById(TMM.Id);
+               
+                var _TMM = await GetTMMById(UpdateDTO.Id);
                 if (_TMM != null)
                 {
-                    _TMM.Id = TMM.Id;
-                    _TMM.TeacherId = TMM.TeacherId;
-                    _TMM.SubjectId = TMM.SubjectId;
+                    _TMM.Id = UpdateDTO.Id;
+                    _TMM.TeacherId = UpdateDTO.TeacherId;
+                    _TMM.SubjectId = UpdateDTO.SubjectId;
                     await _tmmrepo.Update(_TMM);
                 }
-                return TMM;
+                return _TMM;
             }
             catch(Exception ex)
             {

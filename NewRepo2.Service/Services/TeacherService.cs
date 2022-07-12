@@ -53,17 +53,15 @@ namespace NewRepo2.Service.Services
         {
             try
             {
-                var teacher = new Teacher();
-                teacher.TeacherId = updateDTO.TeacherId;
-                teacher.TeacherName = updateDTO.TeacherName;
-                Teacher _teacher = await GetTeacherById(teacher.TeacherId);
+               
+                var _teacher = await GetTeacherById(updateDTO.TeacherId);
                 if (_teacher != null)
                 {
-                    _teacher.TeacherId = teacher.TeacherId;
-                    _teacher.TeacherName = teacher.TeacherName;
+                    _teacher.TeacherId = updateDTO.TeacherId;
+                    _teacher.TeacherName = updateDTO.TeacherName;
                     await _teacherRepository.Update(_teacher);
                 }
-                return teacher;
+                return _teacher;
             }
             catch(Exception ex)
             {

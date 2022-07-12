@@ -35,7 +35,7 @@ namespace NewRepo2.Repository.Infrastructure
 
         public async Task<T> GetById(int id)
         {
-            return await _context.Set<T>().FindAsync();
+            return await _context.Set<T>().FindAsync(id);
         }
 
         public async Task Update(T entity)
