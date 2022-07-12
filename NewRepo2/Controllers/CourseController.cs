@@ -26,6 +26,12 @@ namespace NewRepo2.Controllers
             IEnumerable<Course> course = await _courseService.GetAllCourse();
             return Ok(course);
         }
+        //[HttpGet]
+        //[Route("{id}")]
+        //public async Task<Course> GetCourseById(int id)
+        //{
+        //    return Ok(await _courseService.GetCourseById(id));
+        //}
         [HttpPost]
         [Produces(typeof(Course))]
         public async Task<IActionResult> AddCourse(CourseAddDTO addDTO)
