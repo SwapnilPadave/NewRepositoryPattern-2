@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NewRepo2.DTO.TeacherDTO;
 using NewRepo2.Model.Models;
@@ -28,18 +29,21 @@ namespace NewRepo2.Controllers
         }
         [HttpPost]
         [Produces(typeof(Teacher))]
+        [Authorize(Policy = "Principle,Vice-Principle")]
         public async Task<IActionResult> AddSubject(TeacherAddDTO addDTO)
         {
             return Ok(await _teacherService.AddTeacher(addDTO));
         }
         [HttpPut]
         [Route("{id}")]
+        [Authorize(Policy = "Principle,Vice-Principle")]
         public async Task<IActionResult> UpdateSubject(TeacherUpdateDTO updateDTO)
         {
             return Ok(await _teacherService.UpdateTeacher(updateDTO));
         }
         [HttpDelete]
         [Route("{id}")]
+        [Authorize(Policy = "Principle,Vice-Principle")]
         public async Task<IActionResult> DeleteTeacher(int id)
         {
             return Ok(await _teacherService.DeleteTeacher(id));

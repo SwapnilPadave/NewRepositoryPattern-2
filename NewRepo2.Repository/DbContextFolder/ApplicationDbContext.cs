@@ -19,5 +19,8 @@ namespace NewRepo2.Repository.DbContextFolder
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<TeacherMappingModel> TeacherMappingModels { get; set; }
+        public DbSet<UserModel> UserModels { get; set; }
+        public DbSet<UserRoles> UserRole { get; set; }
+
     }
 }

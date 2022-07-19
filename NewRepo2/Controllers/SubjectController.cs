@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NewRepo2.DTO.SubjectDTO;
 using NewRepo2.Model.Models;
@@ -21,25 +22,28 @@ namespace NewRepo2.Controllers
         }
         [HttpGet]
         [Produces(typeof(IEnumerable<Subject>))]
-        public async Task<IActionResult> GeStudentListt()
+        public async Task<IActionResult> GeSubjectListt()
         {
             IEnumerable<Subject> subject = await _subjectService.GetAllSubject();
             return Ok(subject);
         }
         [HttpPost]
         [Produces(typeof(Subject))]
+        [Authorize(Policy = "Principle,Vice-Principle")]
         public async Task<IActionResult> AddSubject(SubjectAddDTO addDTO)
         {
             return Ok(await _subjectService.AddSubject(addDTO));
         }
         [HttpPut]
         [Route("{id}")]
+        [Authorize(Policy = "Principle,Vice-Principle")]
         public async Task<IActionResult> UpdateSubject(SubjectUpdateDTO updateDTO)
         {
             return Ok(await _subjectService.UpdateSubject(updateDTO));
         }
         [HttpDelete]
         [Route("{id}")]
+        [Authorize(Policy = "Principle,Vice-Principle")]
         public async Task<IActionResult> DeleteSubject(int id)
         {
             return Ok(await _subjectService.DeleteSubject(id));

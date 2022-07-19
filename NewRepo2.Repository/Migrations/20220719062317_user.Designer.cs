@@ -9,7 +9,7 @@ using NewRepo2.Repository.DbContextFolder;
 namespace NewRepo2.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220709115040_user")]
+    [Migration("20220719062317_user")]
     partial class user
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -115,6 +115,51 @@ namespace NewRepo2.Repository.Migrations
                     b.ToTable("TeacherMappingModels");
                 });
 
+            modelBuilder.Entity("NewRepo2.Model.Models.UserModel", b =>
+                {
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("EmailAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Surname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("UserModels");
+                });
+
+            modelBuilder.Entity("NewRepo2.Model.Models.UserRoles", b =>
+                {
+                    b.Property<int>("RoleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("RoleName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RoleId");
+
+                    b.ToTable("UserRole");
+                });
+
             modelBuilder.Entity("NewRepo2.Model.Models.Student", b =>
                 {
                     b.HasOne("NewRepo2.Model.Models.Course", "Course")
@@ -154,6 +199,17 @@ namespace NewRepo2.Repository.Migrations
                     b.Navigation("Subject");
 
                     b.Navigation("Teacher");
+                });
+
+            modelBuilder.Entity("NewRepo2.Model.Models.UserModel", b =>
+                {
+                    b.HasOne("NewRepo2.Model.Models.UserRoles", "UserRoles")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

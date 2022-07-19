@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NewRepo2.DTO.CourseDTO;
 using NewRepo2.Model.Models;
@@ -34,18 +35,21 @@ namespace NewRepo2.Controllers
         //}
         [HttpPost]
         [Produces(typeof(Course))]
+        [Authorize(Policy = "Principle")]
         public async Task<IActionResult> AddCourse(CourseAddDTO addDTO)
         {
             return Ok(await _courseService.AddCourse(addDTO));
         }
         [HttpPut]
         [Route("{id}")]
+        [Authorize(Policy = "Principle")]
         public async Task<IActionResult> UpdateCourse(CourseUpdateDTO updateDTO)
         {
             return Ok(await _courseService.UpdateCourse(updateDTO));
         }
         [HttpDelete]
         [Route("{id}")]
+        [Authorize(Policy = "Principle")]
         public async Task<IActionResult> DeleteCourse(int id)
         {
             return Ok(await _courseService.DeleteCourse(id));
